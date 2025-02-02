@@ -2,19 +2,19 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 require("dotenv").config();
-import { PrismaClient } from "@prisma/client"; // Import PrismaClient
+import { PrismaClient } from "@prisma/client"; 
 
 import conversationRoutes from "./routes/conversationRoutes";
 import messageRoutes from "./routes/messageRoutes";
 import userRoutes from "./routes/userRoutes"
 
 const app = express();
-const prisma = new PrismaClient(); // Instantiate PrismaClient
+const prisma = new PrismaClient(); 
 
 const port = 4000;
 
 const corsOption = {
-  origin: ["http://localhost:3000", "https://trello-rehla.vercel.app"],
+  origin: ["http://localhost:3000", "https://adamantestserver.vercel.app"],
   credentials: true,
 };
 

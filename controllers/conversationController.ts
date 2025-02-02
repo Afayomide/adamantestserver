@@ -33,24 +33,24 @@ export const createConversation = async (req: Request, res: Response) => {
   try {
     const { userEmail } = req.body;
 
-    // Create a new conversation
     const newConversation = await prisma.conversation.create({
       data: {
         userEmail: userEmail,
       },
     });
 
-    // Create an initial bot message
     const botMessage = await prisma.message.create({
       data: {
         conversationId: newConversation.id,
-        isUser: false,  // Assuming 'bot' is the sender identifier
-        text: 'How may I help you?',  // Default message
+        isUser: false,  
+        text: 'How may I help you?', 
       },
     });
-
-    // Send the response back including the new conversation and initial bot message
-    res.status(201).json(newConversation);
+    const updatedConversation = await prisma.conversation.findUnique({
+      where: { id: newConversation.id },
+      include: { messages: true }, 
+    });
+    res.status(201).json(updatedConversation);
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error(error)
