@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 const port = 4000;
 
 const corsOption = {
-  origin: ["http://localhost:3000", "https://adamantestserver.vercel.app"],
+  origin: ["http://localhost:3000", "https://adamantest.vercel.app"],
   credentials: true,
 };
 
