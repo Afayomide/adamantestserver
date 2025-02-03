@@ -17,15 +17,17 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
     });
 
     if (existingUser) {
-      res.status(400).json({ error: "User already exists" });
-      return;
+      res.status(201).json(existingUser);
     }
-
-    const user = await prisma.user.create({
+    else{
+         const user = await prisma.user.create({
       data: { email },
     });
 
     res.status(201).json(user);
+    }
+
+ 
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ error: "Internal server error" });
